@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lime Studio – The Best Discord Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --lime: #b6ff3b;
+      --lime-dark: #6ea81f;
+      --bg: #050608;
+      --card: #101218;
+      --text: #f5f5f5;
+      --accent: #7cf5ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1b222f 0, #050608 55%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 960px;
+      background: linear-gradient(145deg, #090b10, #151827);
+      border-radius: 18px;
+      border: 1px solid rgba(182, 255, 59, 0.25);
+      box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(182, 255, 59, 0.15);
+      padding: 28px 22px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wrapper::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(182, 255, 59, 0.12), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(124, 245, 255, 0.12), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .logo-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ffffff, #b6ff3b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #050608;
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: 1px;
+      box-shadow:
+        0 0 0 3px rgba(5, 6, 8, 0.9),
+        0 0 30px rgba(182, 255, 59, 0.6);
+    }
+
+    .title-block h1 {
+      font-size: 2.1rem;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .title-block p {
+      font-size: 0.98rem;
+      color: #cfd3e6;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(182, 255, 59, 0.4);
+      font-size: 0.8rem;
+      color: #e9ffe0;
+    }
+
+    .tagline span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 10px rgba(182, 255, 59, 0.9);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 780px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: rgba(9, 11, 18, 0.9);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 16px 16px 18px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: var(--lime);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #d7d9e8;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 0.93rem;
+      color: #cfd3e6;
+    }
+
+    li::before {
+      content: "◆";
+      font-size: 0.7rem;
+      margin-top: 3px;
+      color: var(--lime);
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 245, 255, 0.5);
+      color: #e9fbff;
+      background: rgba(5, 9, 12, 0.9);
+    }
+
+    .cta {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cta-main {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--lime), var(--lime-dark));
+      color: #050608;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow:
+        0 0 0 2px rgba(5, 6, 8, 0.9),
+        0 10px 25px rgba(182, 255, 59, 0.6);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .cta-main:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 0 2px rgba(5, 6, 8, 0.9),
+        0 14px 30px rgba(182, 255, 59, 0.8);
+    }
+
+    .cta-note {
+      font-size: 0.85rem;
+      color: #cfd3e6;
+    }
+
+    .quote-card {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(8, 11, 18, 0.95);
+      border: 1px solid rgba(182, 255, 59, 0.35);
+      font-size: 0.9rem;
+      color: #e9ffe0;
+    }
+
+    .quote-card span {
+      color: var(--lime);
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 10px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.8rem;
+      color: #a7adc4;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 10px rgba(182, 255, 59, 0.9);
+      display: inline-block;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="content">
+      <header>
+        <div class="logo-circle">LS</div>
+        <div class="title-block">
+          <h1>Lime Studio</h1>
+          <p>The Discord server where creativity, chaos, and good vibes all hit the perfect frequency.</p>
+          <div class="tagline">
+            <span class="dot"></span>
+            <span>Online · The best place to be on Discord</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Why Lime Studio is actually the best</h2>
+          <p>
+            Lime Studio isn’t just “another server”&mdash;it’s the place you open Discord for.
+            The energy, the people, the inside jokes, the late-night calls… it all just works.
+          </p>
+          <ul>
+            <li><span class="highlight">Real community:</span> people remember your name, your projects, and your weird sense of humour.</li>
+            <li><span class="highlight">Zero dead channels:</span> there’s always a conversation, a meme, or a debate happening somewhere.</li>
+            <li><span class="highlight">Effortless vibes:</span> it feels like a group chat, not a corporate “community hub”.</li>
+            <li><span class="highlight">Safe but fun:</span> chill moderation, clear rules, and no drama main-character energy.</li>
+          </ul>
+          <div class="quote-card">
+            <span>“Lime Studio is that one server you never mute.”</span> – every member, probably
+          </div>
+        </article>
+
+        <aside class="card">
+          <h2>What you’ll find inside</h2>
+          <p>Everything you need to hang out, build stuff, or just exist with cool people:</p>
+          <ul>
+            <li>Active chat channels for daily conversation and unfiltered brain-dumps.</li>
+            <li>Voice calls that start as “5 minutes” and end 3 hours later.</li>
+            <li>Creative spaces for art, music, coding, and whatever else you’re into.</li>
+            <li>Events, game nights, and spontaneous chaos sessions.</li>
+          </ul>
+          <div class="pill-row">
+            <div class="pill">Friendly people</div>
+            <div class="pill">Chill staff</div>
+            <div class="pill">No cringe energy</div>
+            <div class="pill">Always something happening</div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="card">
+        <h2>So… why join Lime Studio over any other server?</h2>
+        <p>
+          Because Lime Studio feels like a friend group, not a follower count. You’re not just “a member” here&mdash;
+          you’re part of the running jokes, the shared projects, and the late-night chaos that makes Discord fun.
+        </p>
+        <p>
+          If you want a place that’s alive, welcoming, and actually worth your time, Lime Studio is that server.
+        </p>
+        <div class="cta">
+          <button class="cta-main">Join Lime Studio</button>
+          <span class="cta-note">Open Discord, drop in, say hi. The rest happens naturally.</span>
+        </div>
+      </section>
+
+      <footer>
+        <div>
+          <span class="status-dot"></span>
+          Lime Studio · The best Discord server you’ll join this year.
+        </div>
+        <div>Made with lime energy &lt;3</div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
